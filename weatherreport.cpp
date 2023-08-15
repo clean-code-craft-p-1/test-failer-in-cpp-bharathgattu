@@ -36,6 +36,23 @@ namespace WeatherSpace
             return 52;
         }
     };
+    class SensorStubNew :public IWeatherSensor {
+        int Humidity() const override {
+            return 60;
+        }
+
+        int Precipitation() const override {
+            return 75;
+        }
+
+        double TemperatureInC() const override {
+            return 30;
+        }
+
+        int WindSpeedKMPH() const override {
+            return 30;
+        }
+    };
     string Report(const IWeatherSensor& sensor)
     {
         int precipitation = sensor.Precipitation();
@@ -69,7 +86,7 @@ namespace WeatherSpace
         // strengthen the assert to expose the bug
         // (function returns Sunny day, it should predict rain)
         string report = Report(sensor);
-        assert(report.length() > 0);
+        assert(report == "Alert, Stormy with heavy rain");
     }
 }
 

@@ -13,10 +13,19 @@ char size(int cms) {
     return sizeName;
 }
 
+namespace testTShirtSize_stub
+{
+    void testTShirtSize()
+    {
+        assert(size(38) == 'M');
+        assert(size(37) == 'S');
+        assert(size(40) == 'M');
+        assert(size(43) == 'L');
+        std::cout << "All is well (maybe!)\n";
+    }
+}
+
 int main() {
-    assert(size(37) == 'S');
-    assert(size(40) == 'M');
-    assert(size(43) == 'L');
-    std::cout << "All is well (maybe!)\n";
+    testTShirtSize_stub::testTShirtSize();
     return 0;
 }
