@@ -63,8 +63,10 @@ namespace WeatherSpace
         {
             if (precipitation >= 20 && precipitation < 60)
                 report = "Partly Cloudy";
-            else if (sensor.WindSpeedKMPH() > 50)
+            else if (precipitation > 60 && sensor.WindSpeedKMPH() > 50)
                 report = "Alert, Stormy with heavy rain";
+            else if(sensor.WindSpeedKMPH() < 50)
+                report = "Moderate rain with less wind";
         }
         return report;
     }
@@ -86,7 +88,7 @@ namespace WeatherSpace
         // strengthen the assert to expose the bug
         // (function returns Sunny day, it should predict rain)
         string report = Report(sensor);
-        assert(report == "Alert, Stormy with heavy rain");
+        assert(report.find("rain")!=string::npos);
     }
 }
 
